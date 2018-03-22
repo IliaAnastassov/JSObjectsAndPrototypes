@@ -7,12 +7,12 @@ let catOne = {
 };
 
 // Constructor function
-function Cat(name, color) {
+function CatConstructorFunction(name, color) {
     this.name = name;
     this.color = color;
 };
 
-let catTwo = new Cat("Madox", "Grey");
+let catTwo = new CatConstructorFunction("Madox", "Grey");
 
 // Object.create
 let catThree = Object.create(Object.prototype,
@@ -40,3 +40,41 @@ class Cat {
 }
 
 let catFour = new Cat("Madox", "Grey");
+
+
+// Object Properties
+let catFive = {
+    name: { first: "Madox", second: "Smilestone" },
+    color: "Grey"
+}
+
+display(Object.getOwnPropertyDescriptor(catFive, "name"));
+
+Object.defineProperty(catFive, "name", { writable: false });
+
+display(Object.getOwnPropertyDescriptor(catFive, "name"));
+
+catFive.name.first = "Bob";
+
+function listProperties(inputObject) {
+    for (let propertyName in inputObject) {
+        let property = inputObject[propertyName];
+        if (typeof (property) === "object") {
+            console.log(propertyName);            
+            listProperties(property)
+        } else {
+            console.log(propertyName + " : " + inputObject[propertyName]);
+        }
+    }
+}
+
+display(JSON.stringify(catFive));
+
+listProperties(catFive);
+
+
+
+
+
+
+
