@@ -63,40 +63,41 @@ display(Object.getOwnPropertyDescriptor(catFive, "name"));
 
 catFive.name.first = "Bob";
 
-function listProperties(inputObject, indent, last) {
-    let propertyNames = Object.keys(inputObject);
+function listObjectProperties(inputObject) {
     
-    for (let i = 0; i < propertyNames.length; i++) {
+    function listProperties(inputObject, indent) {
+        indent += "   ";
         
-        let propertyName = propertyNames[i];
-        let property = inputObject[propertyName];
-        indent += last ? "  " : "";
-
-        if (typeof (property) === "object") {
-            console.log(indent + propertyNames[i]);
-            listProperties(property, indent, i === propertyNames.length - 1);
-        } else {
-            console.log(indent + propertyNames[i] + " : " + property);
+        for (let propertyName in inputObject) {
+            let property = inputObject[propertyName];
+            
+            if (typeof (property) === "object") {
+                console.log(indent + propertyName + ":");
+                listProperties(property, indent);
+            } else {
+                console.log(indent + propertyName + " : " + property);
+            }
         }
     }
+    
+    console.log(typeof (inputObject));
+    listProperties(inputObject, "");
 }
 
-// public static void PrintTree(Node tree, String indent, Bool last)
-// {
-//     Console.Write(indent + "+- " + tree.Name);
-//     indent += last ? "   " : "|  ";
-
-//     for (int i == 0; i < tree.Children.Count; i++)
-//     {
-//         PrintTree(tree.Children[i], indent, i == tree.Children.Count - 1);
-//     }
-// }
-
-// PrintTree(node, "", true)
+listObjectProperties(catFive, "");
 
 display(JSON.stringify(catFive));
 
-listProperties(catFive, "", true);
+
+
+
+
+
+
+
+
+
+
 
 
 
