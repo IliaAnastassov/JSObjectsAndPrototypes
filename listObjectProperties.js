@@ -1,4 +1,7 @@
-// Function 
+// **************************************************
+// Function to list all enumerable 
+// properties of an object
+// **************************************************
 
 function listObjectProperties(inputObject) {
 

@@ -23,7 +23,7 @@ let catFive = {
         this.name.first = names[0];
         this.name.second = names[1];
     }
-}
+};
 
 // Display name property
 display(Object.getOwnPropertyDescriptor(catFive, "name"));

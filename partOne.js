@@ -14,7 +14,7 @@ let catOne = {
 function CatConstructorFunction(name, color) {
     this.name = name;
     this.color = color;
-};
+}
 
 let catTwo = new CatConstructorFunction("Madox", "Grey");
 
