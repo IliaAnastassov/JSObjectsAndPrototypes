@@ -52,7 +52,15 @@ let catFive = {
             two: "mid-two"
         }
     },
-    color: "Grey"
+    color: "Grey",
+    get fullName() {
+        return this.name.first + " " + this.name.second;
+    },
+    set fullName(value) {
+        let names = value.split(" ");
+        this.name.first = names[0];
+        this.name.second = names[1];
+    }
 }
 
 display(Object.getOwnPropertyDescriptor(catFive, "name"));
@@ -64,13 +72,13 @@ display(Object.getOwnPropertyDescriptor(catFive, "name"));
 catFive.name.first = "Bob";
 
 function listObjectProperties(inputObject) {
-    
+
     function listProperties(inputObject, indent) {
         indent += "   ";
-        
+
         for (let propertyName in inputObject) {
             let property = inputObject[propertyName];
-            
+
             if (typeof (property) === "object") {
                 console.log(indent + propertyName + ":");
                 listProperties(property, indent);
@@ -79,22 +87,16 @@ function listObjectProperties(inputObject) {
             }
         }
     }
-    
+
     console.log(typeof (inputObject));
     listProperties(inputObject, "");
 }
 
 listObjectProperties(catFive, "");
 
-display(JSON.stringify(catFive));
+catFive.fullName = "Smelly Buttocks";
 
-
-
-
-
-
-
-
+listObjectProperties(catFive, "");
 
 
 
